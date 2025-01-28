@@ -146,17 +146,16 @@ class _SpeechToTextWidgetState extends State<SpeechToTextWidget> {
         // Print recognized words to the console
         print("Recognized words: ${result.recognizedWords}");
       },
-      listenMode: stt.ListenMode.dictation, // Continuous listening
-      onSoundLevelChange: (level) {}, // Optional: handle sound level changes
+      listenMode: stt.ListenMode.dictation, 
+      onSoundLevelChange: (level) {}, 
       cancelOnError: false,
       onDevice: true, // Ensure on-device processing
-      partialResults: true, // Allows partial results to keep listening
+      partialResults: true, g
     );
 
-    // Automatically restart listening if it stops due to silence
     _speechToText.statusListener = (status) {
       if (status == "notListening" && _isListening) {
-        _startListening(); // Restart listening if user hasn't pressed stop
+        _startListening();
       }
     };
   }
@@ -237,7 +236,6 @@ class _CameraSpeechWidgetState extends State<CameraSpeechWidget> {
 
     try {
       await _cameraController.initialize();
-      // Lock orientation to portrait
       await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     } catch (e) {
       print("Error initializing camera: $e");
@@ -340,12 +338,12 @@ class _CameraSpeechWidgetState extends State<CameraSpeechWidget> {
                     ? Stack(
                   children: [
                     Transform.scale(
-                      scaleX: -1, // Mirror horizontally
+                      scaleX: -1,
                       child: Transform.rotate(
-                        angle: 90 * 3.1416 / 180,  // Rotate the camera preview by 90 degrees (clockwise)
+                        angle: 90 * 3.1416 / 180, 
                         child: Container(
-                          width: 800, // Set your desired width
-                          height: 500, // Set your desired height
+                          width: 800, 
+                          height: 500, 
                           child: CameraPreview(_cameraController),
                         ),
                       ),
